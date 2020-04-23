@@ -18,21 +18,26 @@ public class MagazineApp{
 		if (magazine != null && this.magazines.contains(magazine)) {
 			this.magazines.remove(magazine);
 		}
+		else System.out.println("No "+magazine+" in this cooking magazine! ");
 	}
 	
-	public Magazine getMagazine(Magazine magazine) {
-		for (Magazine r : magazines) {
-			if (magazine != null && r.equals(magazine))
-				return r;
+	public Magazine getMagazine(String name) {
+		for (Magazine m : magazines) {
+			if (name != null && m.getName().equals(name))
+				return m;
 			else
-				System.out.println("No magazine with the name: " + magazine.getName());
+				System.out.println("No magazine with the name: " + name);
 		}
 		return null;
 	}
 	
 	public void updateMagazine(Magazine oldMagazine, Magazine newMagazine) {
-		if (magazines.contains(oldMagazine))
-			oldMagazine = newMagazine;
+		if (magazines.contains(oldMagazine)) {
+			if(!magazines.contains(newMagazine)) {
+			magazines.set(magazines.indexOf(oldMagazine), newMagazine);
+			}
+			else magazines.remove(oldMagazine);
+		}
 		else
 			System.out.println("No " + oldMagazine + " in the list of magazines!");
 	}
