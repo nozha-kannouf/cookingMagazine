@@ -39,13 +39,17 @@ public class Recipe {
 	}
 
 	public void updateIngridient(String oldIngridient, String newIngridient) {
-		if (ingridients.contains(oldIngridient))
+		if (ingridients.contains(oldIngridient)) {
+			if(! ingridients.contains(newIngridient)) {
 			ingridients.set(ingridients.indexOf(oldIngridient), newIngridient);
+			}
+			else ingridients.remove(oldIngridient);
+		}
 		else
 			System.out.println("No " + oldIngridient + " in the list of ingridients!");
 	}
 
-	public void sortIngridient() {
+	public void sortIngridients() {
 		ingridients.sort(Comparator.naturalOrder());
 	}
 

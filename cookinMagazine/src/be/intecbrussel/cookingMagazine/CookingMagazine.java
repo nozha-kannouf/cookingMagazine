@@ -19,26 +19,31 @@ public class CookingMagazine extends Magazine {
 		if (recipe != null && this.recipes.contains(recipe)) {
 			this.recipes.remove(recipe);
 		}
+		else System.out.println("No "+recipe+" in this cooking magazine! ");
 	}
 	
-	public Recipe getRecipe(Recipe recipe) {
+	public Recipe getRecipe(String name) {
 		for (Recipe r : recipes) {
-			if (recipe != null && r.equals(recipe))
+			if (name != null && r.getName().equals(name))
 				return r;
 			else
-				System.out.println("No recepe with the name: " + recipe.getName());
+				System.out.println("No recepe with the name: " + name);
 		}
 		return null;
 	}
 	
 	public void updateRecipe(Recipe oldRecipe, Recipe newRecipe) {
-		if (recipes.contains(oldRecipe))
-			oldRecipe = newRecipe;
+		if (recipes.contains(oldRecipe)) {
+			if(!recipes.contains(newRecipe)) {
+			recipes.set(recipes.indexOf(oldRecipe), newRecipe);
+			}
+			else recipes.remove(oldRecipe);
+		}
 		else
 			System.out.println("No " + oldRecipe + " in the list of recipes!");
 	}
 	
-	public void sortRecipe() {
+	public void sortRecipes() {
 		recipes.sort(Comparator.comparing(Recipe:: getName));
 	}
 	
